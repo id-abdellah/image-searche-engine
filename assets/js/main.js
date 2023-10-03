@@ -53,12 +53,7 @@ function getData(API_URL) {
             downloadImgBtn.forEach(button => {
                 button.addEventListener("click", () => {
                     let imgSrc = button.closest(".imgContainer").firstElementChild.getAttribute("data-highResulotion");
-                    fetch(imgSrc).then(
-                        (res) => {
-                            let file = res.blob();
-                            return file
-                        }
-                    ).then(
+                    fetch(imgSrc).then(res => res.blob()).then(
                         (file) => {
                             let a = document.createElement("a");
                             a.href = URL.createObjectURL(file);
