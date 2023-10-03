@@ -20,6 +20,22 @@ const config = {
     }
 }
 
+function downloadimg(imgUrl) {
+    fetch(imgUrl).then(
+        (res) => {
+            let file = res.blob();
+            return file
+        }
+    ).then(
+        (file) => {
+            let a = document.createElement("a");
+            a.href = URL.createObjectURL(file);
+            a.download = new Date().getTime();
+            a.click()
+        }
+    )
+}
+
 function getData(API_URL) {
     fetch(API_URL, config).then(
         (result) => {
@@ -37,37 +53,21 @@ function getData(API_URL) {
                 let currentPhoto = arrayPhotos[i];
                 divPage.innerHTML += `
                 <div class="imgContainer">
-                    <img data-highResulotion="${currentPhoto.src.original}" src="${currentPhoto.src.large}" alt="" loading="lazy">
+                    <img src="${currentPhoto.src.large}" alt="" loading="lazy">
                     <div class="details">
                         <div class="photographer">
                             <div class="icon"><i class="fa-solid fa-camera"></i></div>
                             <div class="name">${currentPhoto.photographer}</div>
                         </div>
-                        <button class="down_img"><i class="fa-solid fa-download"></i></button>
+                        <button onclick="downloadimg('${currentPhoto.src.large2x}')"><i class="fa-solid fa-download"></i></button>
                     </div>
               </div>
                 `;
             }
-
-            const downloadImgBtn = document.querySelectorAll(".down_img");
-            downloadImgBtn.forEach(button => {
-                button.addEventListener("click", () => {
-                    let imgSrc = button.closest(".imgContainer").firstElementChild.getAttribute("data-highResulotion");
-                    fetch(imgSrc).then(res => res.blob()).then(
-                        (file) => {
-                            let a = document.createElement("a");
-                            a.href = URL.createObjectURL(file);
-                            a.download = new Date().getTime();
-                            a.click()
-                        }
-                    )
-                })
-            })
-
-            // 
         }
     );
 }
+
 
 getData(`https://api.pexels.com/v1/curated?page=${page}&per_page=${perPage}`)
 
