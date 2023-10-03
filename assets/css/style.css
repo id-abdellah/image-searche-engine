@@ -1,0 +1,176 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+* {
+  padding: 0px;
+  margin: 0px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+:root {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: #F6F4EB;
+  font-family: "poppins", sans-serif;
+  min-height: 100dvh;
+  position: relative;
+}
+
+/* ---- */
+header {
+  background-image: url(../images/Header.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  padding: 80px 0 60px;
+}
+header .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: black;
+  opacity: 0.6;
+}
+header .content {
+  position: relative;
+}
+header .content h1 {
+  color: white;
+  text-align: center;
+  letter-spacing: 4px;
+}
+header .content .search {
+  width: 300px;
+  margin-inline: auto;
+  position: relative;
+}
+header .content .search .icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+  color: gray;
+  cursor: pointer;
+}
+header .content .search input {
+  display: block;
+  width: 100%;
+  padding: 10px 8px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+}
+
+section.gallery div.images_wrapper > div {
+  columns: 4;
+  gap: 15px;
+  margin-block: 20px;
+  margin-inline: 15px;
+}
+@media (max-width: 992px) {
+  section.gallery div.images_wrapper > div {
+    columns: 3;
+  }
+}
+@media (max-width: 768px) {
+  section.gallery div.images_wrapper > div {
+    columns: 2;
+  }
+}
+@media (max-width: 570px) {
+  section.gallery div.images_wrapper > div {
+    columns: 1;
+  }
+}
+section.gallery div.images_wrapper > div > div {
+  cursor: pointer;
+}
+section.gallery div.images_wrapper div.imgContainer {
+  margin-bottom: 14px;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+section.gallery div.images_wrapper div.imgContainer img {
+  width: 100%;
+  display: block;
+}
+section.gallery div.images_wrapper div.imgContainer:hover .details {
+  transform: translateY(0);
+}
+section.gallery div.images_wrapper div.imgContainer .details {
+  transition: 0.3s;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  transform: translateY(100%);
+}
+section.gallery div.images_wrapper div.imgContainer .details .photographer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  font-weight: 600;
+}
+section.gallery div.images_wrapper div.imgContainer .details button {
+  border: none;
+  outline: none;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  border-radius: 4px;
+  cursor: pointer;
+}
+section.gallery .loadMore {
+  display: block;
+  margin: 40px auto;
+  width: 200px;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid transparent;
+  outline: none;
+  background-color: #444;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+section.gallery .loadMore:hover {
+  background-color: transparent;
+  border-color: #444;
+  color: black;
+}
+
+footer {
+  background-color: #444;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 12px;
+}
+footer a {
+  color: yellow;
+}
+
+/*# sourceMappingURL=style.css.map */
