@@ -5,6 +5,10 @@ const images_wrapper = document.querySelector(".images_wrapper");
 
 const loadMore = document.querySelector("section.gallery button.loadMore");
 
+const lightbox = document.querySelector(".lightbox");
+
+// const imageContainer = document.querySelectorAll(".imgContainer img");
+
 let page = 1;
 let perPage = 20;
 
@@ -53,7 +57,7 @@ function getData(API_URL) {
                 let currentPhoto = arrayPhotos[i];
                 divPage.innerHTML += `
                 <div class="imgContainer">
-                    <img src="${currentPhoto.src.large}" alt="" loading="lazy">
+                    <img class="anImg" src="${currentPhoto.src.large}" alt="" loading="lazy">
                     <div class="details">
                         <div class="photographer">
                             <div class="icon"><i class="fa-solid fa-camera"></i></div>
@@ -95,4 +99,41 @@ searchIcon.addEventListener("click", () => {
     }
     page = 1;
     getData(`https://api.pexels.com/v1/search?query=${searchInput.value}}&page=${page}&per_page=${perPage}`)
+})
+
+/* img lightbox */
+
+document.addEventListener("click", (e) => {
+    let target = e.target;
+    if (target.className != "anImg") return;
+
+    let imgContainer = target.parentElement;
+    let imgContainer_imgSrc = imgContainer.firstElementChild.src;
+    let imgContainer_photographerName = imgContainer.querySelector(".details .photographer .name").textContent;
+
+    lightbox.style.display = "flex";
+    lightbox.innerHTML = `
+    <div class="content">
+        <div class="head">
+            <div class="photographer-infos">
+                <div class="icon"><i class="fa-solid fa-camera"></i></div>
+                <div class="name">${imgContainer_photographerName}</div>
+            </div>
+            <div class="actions">
+                <button onclick="downloadimg('${imgContainer_imgSrc}')" class="down"><i class="fa-solid fa-download"></i></button>
+                <button class="closeLightbox"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        </div>
+
+        <div class="img-itself">
+        <img
+            src="${imgContainer_imgSrc}" alt="">
+        </div>
+
+    </div>
+    `;
+    let closeLightbox = document.querySelector(".closeLightbox");
+    closeLightbox.addEventListener("click", () => {
+        lightbox.style.display = "none";
+    })
 })
